@@ -1,0 +1,44 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{5DB18EBF-C6EC-4F44-9054-4D9959389F48}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="PImageMagick.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="PImageMagick">
+        <MSBuild Projects="PImageMagick.dproj"/>
+    </Target>
+    <Target Name="PImageMagick:Clean">
+        <MSBuild Projects="PImageMagick.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PImageMagick:Make">
+        <MSBuild Projects="PImageMagick.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="PImageMagick"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="PImageMagick:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="PImageMagick:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+    <ItemGroup Condition="'$(BuildGroup)'=='All'">
+        <BuildGroupProject Include="PImageMagick.dproj">
+            <ProjectGuid>{144EA4FB-FC04-4EA9-B686-436DF70C5230}</ProjectGuid>
+            <Configurations>Debug;Release</Configurations>
+            <Platforms>Android;Android64;iOSDevice64;Win32;Win64</Platforms>
+            <Enabled>True</Enabled>
+        </BuildGroupProject>
+    </ItemGroup>
+</Project>
